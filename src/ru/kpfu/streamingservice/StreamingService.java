@@ -1,10 +1,8 @@
 package ru.kpfu.streamingservice;
 
-import org.omg.CORBA.UserException;
 import ru.kpfu.streamingservice.commands.*;
 import ru.kpfu.streamingservice.exceptions.*;
 
-import java.io.IOException;
 import java.util.*;
 
 public class StreamingService {
@@ -27,9 +25,10 @@ public class StreamingService {
             String command = sc.nextLine();
             ss.userCommand(command, u1);
         } catch (CommandException ex) {
-            System.out.println("Unknown command");
+            System.out.println(ex.getMessage());
             System.exit(1);
         }
+        System.out.println(u1.userFilms.toString());
     }
 
     public void userCommand(String command, User u1) throws CommandException{
@@ -37,14 +36,12 @@ public class StreamingService {
             Scanner sc = new Scanner(System.in);
             for (int i = 0; i < commands.length; i++) {
                 if (command.equals(commandsName[i])){
-                    System.out.println("Enter the content name");
-                    String name = sc.nextLine();
-                    commands[i].execute(name, u1);
+                    commands[i].execute(u1);
                     break;
                 }
             }
         } catch (Exception ex) {
-            throw new CommandException();
+            throw new CommandException("Unknown command");
         }
     }
 }

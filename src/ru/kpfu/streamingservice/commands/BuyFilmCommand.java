@@ -5,7 +5,10 @@ import ru.kpfu.streamingservice.repositories.*;
 import ru.kpfu.streamingservice.*;
 
 public class BuyFilmCommand extends Command{
-    public Object execute(String name, User u1){
+    public Scanner sc = new Scanner(System.in);
+    public Object execute(User u1){
+        System.out.println("Enter the name of film");
+        String name = sc.nextLine();
         FilmRepository fr1 = FilmRepository.getInstance();
         boolean search = fr1.filmListName.contains(name);
         double e = 0.00001;
@@ -17,10 +20,10 @@ public class BuyFilmCommand extends Command{
                 System.out.println("Please enter the price:");
                 Scanner sc = new Scanner(System.in);
                 double price = 0;
-                try { //Исключение для ввода цены через точку (InputMismatchException)
+                try { //Исключение для некорректного ввода цены, в том числе через точку (InputMismatchException)
                     price = sc.nextDouble();
                 } catch (Exception e1) {
-                    System.out.println("Price must be separated by comma");
+                    System.out.println("Wrong enter");
                 }
                 int index = fr1.filmListName.indexOf(name);
                 if (Math.abs(price - fr1.filmListCost.get(index)) < e) {

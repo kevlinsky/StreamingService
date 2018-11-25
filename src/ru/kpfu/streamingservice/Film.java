@@ -1,6 +1,6 @@
 package ru.kpfu.streamingservice;
 
-import ru.kpfu.streamingservice.repositories.FilmRepository;
+import ru.kpfu.streamingservice.repositories.*;
 
 public class Film extends Multimedia {
 
