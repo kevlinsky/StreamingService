@@ -1,11 +1,10 @@
 package ru.kpfu.streamingservice;
 
-import ru.kpfu.repositories.FilmRepository;
+import ru.kpfu.streamingservice.repositories.FilmRepository;
 
-import java.util.*;
 public class Film extends Multimedia {
 
-    protected FilmRepository fr1 = new FilmRepository();
+    protected FilmRepository fr1 = FilmRepository.getInstance();
 
     public Film(String name, String genre, int duration, double cost) {
         super(name, genre, duration, cost);

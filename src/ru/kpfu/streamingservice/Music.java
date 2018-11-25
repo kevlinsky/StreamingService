@@ -1,10 +1,10 @@
 package ru.kpfu.streamingservice;
 
-import ru.kpfu.repositories.*;
+import ru.kpfu.streamingservice.repositories.*;
 
 public class Music extends Multimedia {
 
-    protected MusicRepository mr1 = new MusicRepository();
+    protected MusicRepository mr1 = MusicRepository.getInstance();
 
     public Music(String name, String genre, int duration, double cost) {
         super(name, genre, duration, cost);
